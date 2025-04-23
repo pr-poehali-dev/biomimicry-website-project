@@ -14,6 +14,14 @@ const BiomimicryCard: React.FC<BiomimicryCardProps> = ({
   description,
   imageType,
 }) => {
+  // Сокращенное описание для предпросмотра
+  const shortDescription = description.length > 150 
+    ? `${description.substring(0, 150)}...` 
+    : description;
+  
+  // Состояние для модального окна с полным описанием
+  const [showFullDescription, setShowFullDescription] = React.useState(false);
+  
   return (
     <Card className="overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
       <div className="h-48 overflow-hidden">
@@ -28,12 +36,18 @@ const BiomimicryCard: React.FC<BiomimicryCardProps> = ({
       </CardHeader>
       
       <CardContent className="flex-grow">
-        <p className="text-muted-foreground text-sm">{description}</p>
+        <p className="text-muted-foreground text-sm">
+          {showFullDescription ? description : shortDescription}
+        </p>
       </CardContent>
       
       <CardFooter>
-        <Button variant="outline" className="text-nature-dark border-nature hover:bg-nature/10">
-          Подробнее
+        <Button 
+          variant="outline" 
+          className="text-nature-dark border-nature hover:bg-nature/10"
+          onClick={() => setShowFullDescription(!showFullDescription)}
+        >
+          {showFullDescription ? "Свернуть" : "Подробнее"}
         </Button>
       </CardFooter>
     </Card>

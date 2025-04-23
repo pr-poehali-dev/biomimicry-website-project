@@ -5,25 +5,26 @@ import BiomimicryCard from "@/components/biomimicry-card";
 import { Button } from "@/components/ui/button";
 import ImageLoader from "@/components/ui/image-loader";
 import { Separator } from "@/components/ui/separator";
+import BiomimicryImageProvider from "@/components/biomimicry-image-provider";
 
 const biomimicryExamples = [
   {
     id: 1,
     title: "Липучка Velcro",
     description: "Вдохновлением для изобретения липучки Velcro послужили колючки репейника, которые цепляются за шерсть животных и одежду человека. В 1941 году швейцарский инженер Жорж де Местраль, после охоты с собакой, заметил, как колючки репейника прилипли к его одежде и шерсти собаки.",
-    imageSrc: "https://source.unsplash.com/random/800x600/?velcro,nature",
+    imageType: "velcro",
   },
   {
     id: 2,
     title: "Акульи плавники",
     description: "Структура кожи акулы вдохновила исследователей на создание материалов для снижения сопротивления воды и воздуха. Такие материалы используются в плавательных костюмах, которые позволяют спортсменам устанавливать новые рекорды, а также в авиационной и автомобильной промышленности.",
-    imageSrc: "https://source.unsplash.com/random/800x600/?shark,swim",
+    imageType: "shark",
   },
   {
     id: 3,
     title: "Лотос и самоочищение",
     description: "Листья лотоса имеют уникальную структуру поверхности, которая отталкивает воду и грязь, оставаясь чистой даже в мутной воде. Этот 'эффект лотоса' вдохновил создание самоочищающихся красок, тканей, стекол и других поверхностей.",
-    imageSrc: "https://source.unsplash.com/random/800x600/?lotus,flower",
+    imageType: "lotus",
   }
 ];
 
@@ -35,7 +36,7 @@ const Index: React.FC = () => {
       <HeroSection 
         title="Биомимикрия: Природа как источник идей"
         subtitle="Узнайте, как инженеры и ученые используют природные решения для решения технических задач"
-        backgroundImage="https://source.unsplash.com/random/1920x1080/?nature,forest"
+        imageType="hero"
       />
       
       <section className="py-16 container">
@@ -69,7 +70,7 @@ const Index: React.FC = () => {
           
           <div className="rounded-lg overflow-hidden h-64 md:h-auto">
             <ImageLoader 
-              src="https://source.unsplash.com/random/800x600/?biomimicry,nature" 
+              src="/images/biomimicry-example.jpg" 
               alt="Биомимикрия" 
               className="h-full w-full object-cover"
             />
@@ -86,28 +87,9 @@ const Index: React.FC = () => {
                 key={example.id}
                 title={example.title}
                 description={example.description}
-                imageSrc={example.imageSrc}
+                imageType={example.imageType}
               />
             ))}
-          </div>
-        </div>
-      </section>
-      
-      <section className="bg-nature-accent py-16">
-        <div className="container">
-          <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold font-nature text-nature-dark mb-4">Узнайте больше о биомимикрии</h2>
-            <p className="text-lg text-nature-dark/80 mb-8">
-              Подпишитесь на нашу рассылку, чтобы получать новости, исследования и примеры из мира биомимикрии
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input 
-                type="email" 
-                placeholder="Ваш email" 
-                className="px-4 py-2 rounded-md border border-nature-light focus:outline-none focus:ring-2 focus:ring-nature flex-grow"
-              />
-              <Button className="bg-nature hover:bg-nature-dark text-white">Подписаться</Button>
-            </div>
           </div>
         </div>
       </section>

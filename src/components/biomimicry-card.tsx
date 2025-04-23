@@ -1,48 +1,39 @@
 import React from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import ImageLoader from "@/components/ui/image-loader";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import BiomimicryImageProvider, { BiomimicryImageType } from "./biomimicry-image-provider";
 
 interface BiomimicryCardProps {
   title: string;
   description: string;
-  imageSrc: string;
-  action?: string;
-  onClick?: () => void;
+  imageType: BiomimicryImageType;
 }
 
 const BiomimicryCard: React.FC<BiomimicryCardProps> = ({
   title,
   description,
-  imageSrc,
-  action = "Подробнее",
-  onClick
+  imageType,
 }) => {
   return (
-    <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg">
-      <div className="h-48 w-full">
-        <ImageLoader 
-          src={imageSrc} 
-          alt={title}
-          className="h-full w-full object-cover"
+    <Card className="overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+      <div className="h-48 overflow-hidden">
+        <BiomimicryImageProvider 
+          type={imageType} 
+          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
         />
       </div>
+      
       <CardHeader>
-        <CardTitle className="font-nature">{title}</CardTitle>
-        <CardDescription>{description.slice(0, 100)}...</CardDescription>
+        <CardTitle className="text-xl font-nature text-nature-dark">{title}</CardTitle>
       </CardHeader>
-      <CardContent>
-        <p className="text-sm text-muted-foreground">
-          {description.slice(0, 150)}...
-        </p>
+      
+      <CardContent className="flex-grow">
+        <p className="text-muted-foreground text-sm">{description}</p>
       </CardContent>
+      
       <CardFooter>
-        <Button 
-          variant="outline" 
-          className="w-full hover:bg-nature hover:text-white"
-          onClick={onClick}
-        >
-          {action}
+        <Button variant="outline" className="text-nature-dark border-nature hover:bg-nature/10">
+          Подробнее
         </Button>
       </CardFooter>
     </Card>
